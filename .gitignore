@@ -22,4 +22,4 @@ bin/ofMaker
 lib
 *.mk
 *.workspace.session
-*tern-port
+*.tern-port
