@@ -10,30 +10,19 @@
 *.dll
 *.dylib
 
-# Qt-es
+# Codelite
 
-/.qmake.cache
-/.qmake.stash
-*.pro.user
-*.pro.user.*
-*.qbs.user
-*.qbs.user.*
-*.moc
-moc_*.cpp
-moc_*.h
-qrc_*.cpp
-ui_*.h
-Makefile*
-*build-*
-
-# QtCreator
-
-*.autosave
-
-# QtCtreator Qml
-*.qmlproject.user
-*.qmlproject.user.*
-
-# QtCtreator CMake
-CMakeLists.txt.user*
-
+Debug
+Release
+Release_gcc_unicode
+DebugUnicode
+*.session
+*.tags
+*.d
+*.o
+*.pyc
+bin
+bin/ofMaker
+lib
+*.mk
+*.workspace.session
