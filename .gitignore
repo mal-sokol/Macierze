@@ -23,3 +23,5 @@ lib
 *.mk
 *.workspace.session
 *.tern-port
+*.txt
+.codelite/**
