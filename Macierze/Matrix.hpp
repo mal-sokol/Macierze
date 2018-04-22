@@ -8,7 +8,7 @@
 
 using namespace std;
 
-template<typename T, size_t ROW, size_t COL> class Matrix
+template<typename T, size_t COL, size_t ROW> class Matrix
 {
 public:
 	Matrix();
@@ -19,6 +19,7 @@ public:
 //	void fill();
 	
 	template <typename U, size_t M, size_t N> friend ostream& operator<<(ostream& os, const Matrix<U, M, N>& m);
+	T& operator() (const size_t column, const size_t row);
 	
 private:
 	T** matrix;
@@ -27,8 +28,8 @@ private:
 };
 
 
-template<typename T, size_t ROW, size_t COL>
-Matrix<T, ROW, COL>::Matrix()
+template<typename T, size_t COL, size_t ROW>
+Matrix<T, COL, ROW>::Matrix()
 {
 	matrix = new T*[ROW];
 	
@@ -43,8 +44,8 @@ Matrix<T, ROW, COL>::Matrix()
 	numOfColumns = COL;
 }
 
-template<typename T, size_t ROW, size_t COL>
-Matrix<T, ROW, COL>::~Matrix()
+template<typename T, size_t COL, size_t ROW>
+Matrix<T, COL, ROW>::~Matrix()
 {
 	for (size_t r = 0; r < ROW; r++) {
 		cout << "destroing row " << r+1 << endl;
@@ -62,6 +63,23 @@ Matrix<T, ROW, COL>::~Matrix()
 //	}
 //}
 
+template <typename T, size_t COL, size_t ROW>
+T& Matrix<T, COL, ROW>::operator() (const size_t column, const size_t row) {
+	
+	size_t x = column-1;
+	size_t y = row-1;
+	
+//	try { 
+//		if( column<1 || column>COL || row<1 || row>ROW) {
+//		throw 1;
+//		}
+//		return matrix[x][y];
+//	}
+//	catch(int e) {
+//		cout << "Wspolrzedne poza zakresem" << endl;
+//	}
+	return matrix[y][x];
+}
 
 template <typename U, size_t M, size_t N> ostream& operator<<(ostream& os, const Matrix<U, M, N>& m) {
 	

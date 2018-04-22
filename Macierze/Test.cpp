@@ -15,6 +15,9 @@ void Test::emptyMatrix() {
 	Matrix<double, 3, 7> dblMatrix;
 	Matrix<char, 2, 2> charMatrix;
 	
+	intMatrix(2, 2) = 7;
+	dblMatrix(3, 7) = 3.14;
+	
 	cout << intMatrix << endl
 		<< dblMatrix << endl
 		<< charMatrix;
