@@ -6,7 +6,7 @@ class Test
 public:
 	Test();
 	~Test();
-
+	void emptyMatrix();
 };
 
 #endif // TEST_HPP
