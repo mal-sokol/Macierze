@@ -36,6 +36,8 @@ public:
 	Matrix<T, COLS, ROWS> operator - (const Matrix<T, COLS, ROWS>& right);
 	Matrix<T, COLS, ROWS>& operator = (const Matrix<T, COLS, ROWS>& right);
 	
+	Matrix<T, ROWS, COLS> Transposed();
+	
 private:
 	T** matrix;
 	size_t numOfRows;
@@ -173,7 +175,7 @@ Matrix<T, COLS, ROWS> Matrix<T, COLS, ROWS>::operator - (const Matrix<T, COLS, R
 	
 	for(size_t i = 0; i < ROWS; i++) {
 		for(size_t j = 0; j < COLS; j++) {
-				result(i, j) = Matrix<T, COLS, ROWS>::matrix(i, j) - Matrix<T, COLS, ROWS>::right(i, j);
+				result(i, j) = matrix(i, j) - right(i, j);
 		}
 	}
 	return result;
@@ -210,6 +212,22 @@ ostream& operator << (ostream& os, const Matrix<U, M, N>& m) {
 	}
 	
 	return os;
+}
+//----------------------------------------------------------------------------------------------//
+
+
+template<typename T, size_t COLS, size_t ROWS>
+Matrix<T, ROWS, COLS> Matrix<T, COLS, ROWS>::Transposed() {
+	
+	Matrix<T, ROWS, COLS> result;
+	
+	for(size_t i = 0; i<ROWS; i++) {
+		for(size_t j = 0; j<COLS; j++) {
+			result(j, i) = matrix(i, j);
+		}
+	}
+	
+	return result;
 }
 
 #endif // MATRIX_HPP
