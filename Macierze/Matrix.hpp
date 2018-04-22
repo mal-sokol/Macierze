@@ -14,9 +14,8 @@ public:
 	Matrix();
 	~Matrix();
 	
-//	void setValue(T value, size_t r, size_t c) {matrix[r][c] = value;}
 //	void fillRow(size_t r);
-//	void fill();
+	void fill();
 	
 	template <typename U, size_t M, size_t N> friend ostream& operator<<(ostream& os, const Matrix<U, M, N>& m);
 	T& operator() (const size_t column, const size_t row);
@@ -55,14 +54,6 @@ Matrix<T, COL, ROW>::~Matrix()
 	cout << "MATRIX DESTROYED" << endl;
 }
 
-//template<typename T, size_t ROW, size_t COL>
-//void Matrix<T, ROW, COL>::fillRow(size_t r) {
-//	
-//	for(size_t i = 0; i<COL; i++) {
-//		
-//	}
-//}
-
 template <typename T, size_t COL, size_t ROW>
 T& Matrix<T, COL, ROW>::operator() (const size_t column, const size_t row) {
 	
@@ -84,14 +75,29 @@ T& Matrix<T, COL, ROW>::operator() (const size_t column, const size_t row) {
 template <typename U, size_t M, size_t N> ostream& operator<<(ostream& os, const Matrix<U, M, N>& m) {
 	
 	for(size_t i = 0; i<m.numOfRows; i++) {
-		os << '|';
+		os << "| ";
 		for(size_t j = 0; j<m.numOfColumns; j++) {
-			os << setw(3) << m.matrix[i][j];
+			os << setw(3) << setprecision(2) << m.matrix[i][j] << ' ';
 		}
 		os << '|' << endl;
 	}
 	
 	return os;
+}
+
+template<typename T, size_t COL, size_t ROW>
+void Matrix<T, COL, ROW>::fill() {
+	
+	for (size_t r = 0; r < ROW; r++) {
+		for (size_t c = 0; c < COL; c++) {
+			cin >> matrix[r][c];				//wczytywanie niezabezpieczone
+//			while(!cin.good()) {
+//				cin.ignore(1000, '\n');
+//				cin >> matrix[r][c];
+//				}
+			}
+	}
+	cin.ignore(1000, '\n');
 }
 
 #endif // MATRIX_HPP
