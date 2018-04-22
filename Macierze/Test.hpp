@@ -7,6 +7,7 @@ public:
 	Test();
 	~Test();
 	void emptyMatrix();
+	void operators1();
 };
 
 #endif // TEST_HPP

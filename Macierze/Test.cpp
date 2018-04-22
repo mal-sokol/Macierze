@@ -28,3 +28,31 @@ void Test::emptyMatrix() {
 		<< dblMatrix << endl
 		<< charMatrix;
 }
+
+
+void Test::operators1() {
+	
+	Matrix<int, 4, 5> M1;
+	Matrix<int, 4, 5> M2;
+	Matrix<int, 4, 5> M3;
+	Matrix<int, 2, 4> M4;
+	Matrix<int, 2, 5> M5;
+	
+	
+	M1.fill();
+	M2.fill();
+	M4.fill();
+	
+	cout << M1 <<endl
+		<< M2 <<endl
+		<< M3 <<endl
+		<< M4 <<endl
+		<< M5 << endl;
+	
+	M3 = M2 - M1;
+	M5 = M3 * M4;
+	
+	cout << "M2 - M1 =" << endl << M3 << endl
+		<< "M3 * M4 =" << endl << M5 << endl;
+	
+}

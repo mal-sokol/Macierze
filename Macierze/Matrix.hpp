@@ -8,7 +8,7 @@
 
 using namespace std;
 
-template<typename T, size_t COL, size_t ROW> class Matrix
+template<typename T, size_t COLS, size_t ROWS> class Matrix
 {
 public:
 	Matrix();
@@ -17,8 +17,24 @@ public:
 //	void fillRow(size_t r);
 	void fill();
 	
-	template <typename U, size_t M, size_t N> friend ostream& operator<<(ostream& os, const Matrix<U, M, N>& m);
-	T& operator() (const size_t column, const size_t row);
+	template <typename U, size_t M, size_t N> friend ostream& operator << (ostream& os, const Matrix<U, M, N>& m);
+	
+    T operator()(size_t col, size_t row) const
+    {
+        return matrix[row][col];
+    }
+
+    T& operator()(size_t col, size_t row)
+    {
+        return matrix[row][col];
+    }
+
+//	T& operator () (const size_t column, const size_t row);
+	bool operator == (const Matrix<T, COLS, ROWS>& right);
+	bool operator != (const Matrix<T, COLS, ROWS>& right);
+	Matrix<T, COLS, ROWS> operator + (const Matrix<T, COLS, ROWS>& right);
+	Matrix<T, COLS, ROWS> operator - (const Matrix<T, COLS, ROWS>& right);
+	Matrix<T, COLS, ROWS>& operator = (const Matrix<T, COLS, ROWS>& right);
 	
 private:
 	T** matrix;
@@ -27,26 +43,29 @@ private:
 };
 
 
-template<typename T, size_t COL, size_t ROW>
-Matrix<T, COL, ROW>::Matrix()
+
+template<typename T, size_t COLS, size_t ROWS>
+Matrix<T, COLS, ROWS>::Matrix()
 {
-	matrix = new T*[ROW];
+	matrix = new T*[ROWS];
 	
-	for (size_t r = 0; r < ROW; r++) {
-		matrix[r] = new T[COL];
-		for (size_t c = 0; c < COL; c++) {
+	for (size_t r = 0; r < ROWS; r++) {
+		matrix[r] = new T[COLS];
+		for (size_t c = 0; c < COLS; c++) {
 			matrix[r][c] = 0;
 		}
 	}
 	
-	numOfRows = ROW;
-	numOfColumns = COL;
+	numOfRows = ROWS;
+	numOfColumns = COLS;
 }
 
-template<typename T, size_t COL, size_t ROW>
-Matrix<T, COL, ROW>::~Matrix()
+
+
+template<typename T, size_t COLS, size_t ROWS>
+Matrix<T, COLS, ROWS>::~Matrix()
 {
-	for (size_t r = 0; r < ROW; r++) {
+	for (size_t r = 0; r < ROWS; r++) {
 		cout << "destroing row " << r+1 << endl;
 		delete[] matrix[r];
 		}
@@ -54,25 +73,133 @@ Matrix<T, COL, ROW>::~Matrix()
 	cout << "MATRIX DESTROYED" << endl;
 }
 
-template <typename T, size_t COL, size_t ROW>
-T& Matrix<T, COL, ROW>::operator() (const size_t column, const size_t row) {
+
+
+template<typename T, size_t COLS, size_t ROWS>
+void Matrix<T, COLS, ROWS>::fill() {
 	
-	size_t x = column-1;
-	size_t y = row-1;
-	
-//	try { 
-//		if( column<1 || column>COL || row<1 || row>ROW) {
-//		throw 1;
-//		}
-//		return matrix[x][y];
-//	}
-//	catch(int e) {
-//		cout << "Wspolrzedne poza zakresem" << endl;
-//	}
-	return matrix[y][x];
+	for (size_t r = 0; r < ROWS; r++) {
+		for (size_t c = 0; c < COLS; c++) {
+			cin >> matrix[r][c];				//wczytywanie niezabezpieczone
+//			while(!cin.good()) {
+//				cin.ignore(1000, '\n');
+//				cin >> matrix[r][c];
+//				}
+			}
+	}
+	cin.ignore(1000, '\n');
 }
 
-template <typename U, size_t M, size_t N> ostream& operator<<(ostream& os, const Matrix<U, M, N>& m) {
+
+
+
+//---------------------------------------< OPERATORS >------------------------------------------//
+
+
+//template <typename T, size_t COLS, size_t ROWS>
+//T& Matrix<T, COLS, ROWS>::operator () (const size_t column, const size_t row) {
+//	
+//	size_t x = column-1;
+//	size_t y = row-1;
+//	
+////	try { 
+////		if( column<1 || column>COL || row<1 || row>ROW) {
+////		throw 1;
+////		}
+////		return matrix[x][y];
+////	}
+////	catch(int e) {
+////		cout << "Wspolrzedne poza zakresem" << endl;
+////	}
+//	return this->matrix[y][x];
+//}
+
+
+
+template<typename T, size_t COLS, size_t ROWS>
+Matrix<T, COLS, ROWS>& Matrix<T, COLS, ROWS>::operator = (const Matrix<T, COLS, ROWS>& right) {
+	
+	for (size_t i = 0; i < numOfRows; i++) {
+		for (size_t j = 0; j < numOfColumns; j++) {
+			this->matrix(i, j) = right(i, j);
+		}
+	}
+	return *this;
+}
+
+
+template<typename T, size_t COLS, size_t ROWS>
+bool Matrix<T, COLS, ROWS>::operator == (const Matrix<T, COLS, ROWS>& right) {
+	
+	for (size_t i = 0; i < numOfRows; i++) {
+		for (size_t j = 0; j < numOfColumns; j++) {
+			if (this->matrix(i, j) != right(i, j)) {
+				return false;
+			}
+		}
+	}
+    return true;
+}
+
+
+
+template<typename T, size_t COLS, size_t ROWS>
+bool Matrix<T, COLS, ROWS>::operator != (const Matrix<T, COLS, ROWS>& right) {
+	
+	return !(*this == left);
+}
+
+
+
+template<typename T, size_t COLS, size_t ROWS>
+Matrix<T, COLS, ROWS> Matrix<T, COLS, ROWS>::operator + (const Matrix<T, COLS, ROWS>& right) {
+	
+	Matrix<T, COLS, ROWS> result;
+	
+	for(size_t i = 0; i < ROWS; i++) {
+		for(size_t j = 0; j < COLS; j++) {
+				result(i, j) = matrix(i, j) + right(i,j);
+		}
+	}
+	return result;
+}
+
+
+
+template<typename T, size_t COLS, size_t ROWS>
+Matrix<T, COLS, ROWS> Matrix<T, COLS, ROWS>::operator - (const Matrix<T, COLS, ROWS>& right) {
+	
+	Matrix<T, COLS, ROWS> result;
+	
+	for(size_t i = 0; i < ROWS; i++) {
+		for(size_t j = 0; j < COLS; j++) {
+				result(i, j) = Matrix<T, COLS, ROWS>::matrix(i, j) - Matrix<T, COLS, ROWS>::right(i, j);
+		}
+	}
+	return result;
+}
+
+
+
+template <typename U, size_t M, size_t N, size_t K>
+Matrix<U, K, N> operator * (const Matrix<U, M, N>& left, const Matrix<U, K, M>& right) {
+	
+	Matrix<U, K, N> result;
+	
+	for(size_t i = 0; i < N; i++) {
+		for(size_t j = 0; j < M; j++) {
+			for(size_t k = 0; k < K; k++) {
+			result(i, j) += left(i, k) * right(k, j);
+			}
+		}
+	}
+	return result;
+}
+
+
+
+template <typename U, size_t M, size_t N>
+ostream& operator << (ostream& os, const Matrix<U, M, N>& m) {
 	
 	for(size_t i = 0; i<m.numOfRows; i++) {
 		os << "| ";
@@ -83,21 +210,6 @@ template <typename U, size_t M, size_t N> ostream& operator<<(ostream& os, const
 	}
 	
 	return os;
-}
-
-template<typename T, size_t COL, size_t ROW>
-void Matrix<T, COL, ROW>::fill() {
-	
-	for (size_t r = 0; r < ROW; r++) {
-		for (size_t c = 0; c < COL; c++) {
-			cin >> matrix[r][c];				//wczytywanie niezabezpieczone
-//			while(!cin.good()) {
-//				cin.ignore(1000, '\n');
-//				cin >> matrix[r][c];
-//				}
-			}
-	}
-	cin.ignore(1000, '\n');
 }
 
 #endif // MATRIX_HPP
