@@ -35,7 +35,7 @@ public:
 	Matrix<T, ROWS, COLS> operator - (const Matrix<T, ROWS, COLS>& right);
 	Matrix<T, ROWS, COLS>& operator = (const Matrix<T, ROWS, COLS>& right);
 	
-	Matrix<T, COLS, ROWS> Transposed();
+	Matrix<T, COLS, ROWS> transposed();
 	
 private:
 	T** matrix;
@@ -69,14 +69,15 @@ Matrix<T, ROWS, COLS>::~Matrix()
 		delete[] matrix[r];
 		}
 	delete[] matrix;
-	cout << "MATRIX DESTROYED" << endl;
+	cout << "MATRIX " << ROWS << "x" << COLS << " DESTROYED" << endl;
 }
 
 
 
 template<typename T, size_t ROWS, size_t COLS>
 void Matrix<T, ROWS, COLS>::fill() {
-	
+
+    cout << "Wypelnij macierz o wymiarach " << ROWS << "x" << COLS << endl;
 	for (size_t r = 0; r < ROWS; r++) {
 		cout << "Rzad " << r+1 << ": ";
 		for (size_t c = 0; c < COLS; c++) {
@@ -184,7 +185,7 @@ ostream& operator << (ostream& os, const Matrix<U, N, M>& m) {
 	for(size_t i = 0; i<m.numOfRows; i++) {
 		os << "| ";
 		for(size_t j = 0; j<m.numOfColumns; j++) {
-			os << setw(3) << setprecision(2) << m.matrix[i][j] << ' ';
+			os << setw(3) << setprecision(4) << m.matrix[i][j] << ' ';
 		}
 		os << '|' << endl;
 	}
@@ -195,7 +196,7 @@ ostream& operator << (ostream& os, const Matrix<U, N, M>& m) {
 
 
 template<typename T, size_t ROWS, size_t COLS>
-Matrix<T, COLS, ROWS> Matrix<T, ROWS, COLS>::Transposed() {
+Matrix<T, COLS, ROWS> Matrix<T, ROWS, COLS>::transposed() {
 	
 	Matrix<T, COLS, ROWS> result;
 	
@@ -207,5 +208,40 @@ Matrix<T, COLS, ROWS> Matrix<T, ROWS, COLS>::Transposed() {
 	
 	return result;
 }
+
+
+
+template <typename T, size_t M>
+T det(Matrix<T, M, M> &A) {
+    if(M == 1) {
+        return A(0, 0);
+    }
+    else if (M > 1){
+        T s = 0;
+        for(size_t i = 0; i<M; i++) {
+            Matrix<T, M-1, M-1> Next;
+            for(size_t j = 1; j<M; j++) {
+                for(size_t k = 0; k<M; k++) {
+                    if(k<i) {
+                        Next(k, j-1) = A(k, j);
+                    }
+                    else if(k>i) {
+                        Next(k-1, j-1) = A(k, j);
+                    }
+                }
+            }
+            cout << Next << endl;
+            s = det(Next);
+//            if(i%2) {
+//                s -= A(i, 0) * det(Next);
+//            }
+//            else {
+//                s += A(i, 0) * det(Next);
+//            }
+
+        }
+        return s;
+    }
+};
 
 #endif // MATRIX_HPP
