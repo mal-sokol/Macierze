@@ -35,8 +35,8 @@ void Test::operators1() {
 	Matrix<int, 4, 5> M1;
 	Matrix<int, 4, 5> M2;
 	Matrix<int, 4, 5> M3;
-	Matrix<int, 2, 4> M4;
-	Matrix<int, 2, 5> M5;
+	Matrix<int, 5, 2> M4;
+	Matrix<int, 4, 2> M5;
 	
 	
 	M1.fill();
