@@ -26,3 +26,7 @@ lib
 *.txt
 .codelite/**
 Makefile
+
+#CLion
+
+*.xml

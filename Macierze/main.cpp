@@ -7,6 +7,7 @@ using namespace std;
 int main(int argc, char **argv)
 {
 	Test test;
-	test.emptyMatrix();
+	//test.emptyMatrix();
+    test.operators1();
 	return 0;
 }

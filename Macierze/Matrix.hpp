@@ -48,20 +48,18 @@ private:
 template<typename T, size_t ROWS, size_t COLS>
 Matrix<T, ROWS, COLS>::Matrix()
 {
-	matrix = new T*[ROWS];
+	numOfRows = ROWS;
+	numOfColumns = COLS;
+	
+	matrix = new T* [ROWS];
 	
 	for (size_t r = 0; r < ROWS; r++) {
-		matrix[r] = new T[COLS];
+		matrix[r] = new T [COLS];
 		for (size_t c = 0; c < COLS; c++) {
 			matrix[r][c] = 0;
 		}
 	}
-	
-	numOfRows = ROWS;
-	numOfColumns = COLS;
 }
-
-
 
 template<typename T, size_t ROWS, size_t COLS>
 Matrix<T, ROWS, COLS>::~Matrix()
@@ -80,6 +78,7 @@ template<typename T, size_t ROWS, size_t COLS>
 void Matrix<T, ROWS, COLS>::fill() {
 	
 	for (size_t r = 0; r < ROWS; r++) {
+		cout << "Rzad " << r+1 << ": ";
 		for (size_t c = 0; c < COLS; c++) {
 			cin >> matrix[r][c];				//wczytywanie niezabezpieczone
 //			while(!cin.good()) {
@@ -88,6 +87,7 @@ void Matrix<T, ROWS, COLS>::fill() {
 //				}
 			}
 	}
+	cout << endl;
 	cin.ignore(1000, '\n');
 }
 
@@ -126,7 +126,7 @@ bool Matrix<T, ROWS, COLS>::operator == (const Matrix<T, ROWS, COLS>& right) {
 template<typename T, size_t ROWS, size_t COLS>
 bool Matrix<T, ROWS, COLS>::operator != (const Matrix<T, ROWS, COLS>& right) {
 	
-	return !(*this == left);
+	return !(left == *this);
 }
 
 
@@ -169,7 +169,7 @@ Matrix<U, M, K> operator * (const Matrix<U, M, N>& left, const Matrix<U, N, K>& 
 	for(size_t i = 0; i < M; i++) {
 		for(size_t k = 0; k < K; k++) {
 			for(size_t j = 0; j < N; j++) {
-			result(i, k) += left(i, j) * right(k, j);
+			result(i, k) += left(i, j) * right(j, k);
 			}
 		}
 	}
@@ -178,8 +178,8 @@ Matrix<U, M, K> operator * (const Matrix<U, M, N>& left, const Matrix<U, N, K>& 
 
 
 
-template <typename U, size_t M, size_t N>
-ostream& operator << (ostream& os, const Matrix<U, M, N>& m) {
+template <typename U, size_t N, size_t M>
+ostream& operator << (ostream& os, const Matrix<U, N, M>& m) {
 	
 	for(size_t i = 0; i<m.numOfRows; i++) {
 		os << "| ";
