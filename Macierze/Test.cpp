@@ -80,7 +80,8 @@ void Test::chooseTest() {
          << "| |      1 - auto create Matrices of different types     |" << endl
          << "| |      2 - test available operations on int Matrices   |" << endl
          << "| |      3 - count determinant of matrix                 |" << endl
-         << "| |      4 - exit program                                |" << endl
+         << "| |      4 - solve cramer equation                       |" << endl
+         << "| |      5 - exit program                                |" << endl
          << "| | ____________________________________________________ |" << endl
          << "|/______________________________________________________/ " << endl << endl << endl
          << "Enter your choice: ";
@@ -101,6 +102,10 @@ void Test::chooseTest() {
             chooseTest();
             break;
         case 4 :
+            cramer();
+            chooseTest();
+            break;
+        case 5 :
             break;
         default:
             cout << "There is no such a test, try again" << endl;
@@ -115,7 +120,7 @@ void Test::chooseTest() {
 
 void Test::determinant(){
 
-    Matrix<int, 1, 1> A;
+    Matrix<int, 3, 3> A;
     int result;
 
     A.fill();
@@ -125,5 +130,44 @@ void Test::determinant(){
 
     result = det(A);
     cout << "det(A) = " << result << endl;
+
+}
+
+
+
+void Test::cramer() {
+
+    Matrix<double, 4, 4> A;
+    Matrix<char, 4, 1> X;
+    Matrix<double, 4, 1> B;
+    Matrix<double, 4, 4> temp;
+
+    A.fill();
+    B.fill();
+    X.fill();
+
+    double detA = det(A);
+    if(detA) {
+        cout << "Matrix A:" << endl << A << endl
+             << "Vector X:" << endl << X << endl
+             << "Vector B:" << endl << B << endl
+             << "Solving Cramer equation A*X = B" << endl << endl;
+
+        for(size_t i = 0; i<4; i++) {
+
+            cout << "Vector X:" << endl << X << endl
+                 << "Vector B:" << endl << B << endl;
+
+            temp = A;
+            temp.replaceColumn(i, B);
+            cout << temp << endl;
+            double x = det(temp)/detA;
+            cout << "Variable " << X(i, 0) << " = " << x << endl << endl;
+
+        }
+    }
+    else {
+        cout << "Deteminant of your matrix A is equal to 0" << endl;
+    }
 
 }

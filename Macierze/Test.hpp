@@ -12,6 +12,7 @@ private:
 	void emptyMatrix();
 	void operators1();
 	void determinant();
+	void cramer();
 };
 
 #endif // TEST_HPP

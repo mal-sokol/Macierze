@@ -34,8 +34,10 @@ public:
 	Matrix<T, ROWS, COLS> operator + (const Matrix<T, ROWS, COLS>& right);
 	Matrix<T, ROWS, COLS> operator - (const Matrix<T, ROWS, COLS>& right);
 	Matrix<T, ROWS, COLS>& operator = (const Matrix<T, ROWS, COLS>& right);
+    Matrix<T, ROWS, COLS> operator * (T scalar);
 	
 	Matrix<T, COLS, ROWS> transposed();
+	void replaceColumn(size_t col, const Matrix<T, ROWS, 1>& vector);
 	
 private:
 	T** matrix;
@@ -161,6 +163,15 @@ Matrix<T, ROWS, COLS> Matrix<T, ROWS, COLS>::operator - (const Matrix<T, ROWS, C
 }
 
 
+template<typename T, size_t ROWS, size_t COLS>
+Matrix<T, ROWS, COLS> Matrix<T, ROWS, COLS>::operator * (T scalar){
+
+    for(size_t i = 0; i < ROWS; i++) {
+        for(size_t j = 0; j < COLS; j++) {
+            matrix[i][j] *= scalar;
+        }
+    }
+}
 
 template <typename U, size_t M, size_t N, size_t K>
 Matrix<U, M, K> operator * (const Matrix<U, M, N>& left, const Matrix<U, N, K>& right) {
@@ -219,7 +230,8 @@ T det(Matrix<T, M, M> &A) {
     else if (M > 1){
         T s = 0;
         for(size_t i = 0; i<M; i++) {
-            Matrix<T, M-1, M-1> Next;
+            const size_t X = M-1;
+            Matrix<T, X, X> Next;
             for(size_t j = 1; j<M; j++) {
                 for(size_t k = 0; k<M; k++) {
                     if(k<i) {
@@ -231,17 +243,31 @@ T det(Matrix<T, M, M> &A) {
                 }
             }
             cout << Next << endl;
-            s = det(Next);
-//            if(i%2) {
-//                s -= A(i, 0) * det(Next);
-//            }
-//            else {
-//                s += A(i, 0) * det(Next);
-//            }
+//            s = det(Next);
+            if(i%2) {
+                s -= A(i, 0) * det(Next);
+            }
+            else {
+                s += A(i, 0) * det(Next);
+            }
 
         }
         return s;
     }
 };
+
+template <typename T>
+T det(Matrix<T, 1, 1> &A) {
+    return A(0, 0);
+}
+
+
+template <typename T, size_t ROWS, size_t COLS>
+void Matrix<T, ROWS, COLS>::replaceColumn(size_t col, const Matrix<T, ROWS, 1>& vector){
+
+    for(size_t i = 0; i<ROWS; i++) {
+        this->matrix[i][col] = vector(i, 0);
+    }
+}
 
 #endif // MATRIX_HPP
