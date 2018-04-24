@@ -1,10 +1,12 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
+#define NDEBUG
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <cassert>
 
 using namespace std;
 
@@ -63,15 +65,50 @@ Matrix<T, ROWS, COLS>::Matrix()
 	}
 }
 
+
+//template<size_t ROWS, size_t COLS>
+//Matrix<string, ROWS, COLS>::Matrix()
+//{
+//    numOfRows = ROWS;
+//    numOfColumns = COLS;
+//
+//    matrix = new string* [ROWS];
+//
+//    for (size_t r = 0; r < ROWS; r++) {
+//        matrix[r] = new string [COLS];
+//        for (size_t c = 0; c < COLS; c++) {
+//            matrix[r][c] = "0";
+//        }
+//    }
+//}
+//
+//
+//template<size_t ROWS, size_t COLS>
+//Matrix<char, ROWS, COLS>::Matrix()
+//{
+//    numOfRows = ROWS;
+//    numOfColumns = COLS;
+//
+//    matrix = new char* [ROWS];
+//
+//    for (size_t r = 0; r < ROWS; r++) {
+//        matrix[r] = new char [COLS];
+//        for (size_t c = 0; c < COLS; c++) {
+//            matrix[r][c] = '0';
+//        }
+//    }
+//}
+
+
 template<typename T, size_t ROWS, size_t COLS>
 Matrix<T, ROWS, COLS>::~Matrix()
 {
 	for (size_t r = 0; r < ROWS; r++) {
-		cout << "destroing row " << r+1 << endl;
+		assert(cout << "destroing row " << r+1 << endl);
 		delete[] matrix[r];
 		}
 	delete[] matrix;
-	cout << "MATRIX " << ROWS << "x" << COLS << " DESTROYED" << endl;
+	assert(cout << "MATRIX " << ROWS << "x" << COLS << " DESTROYED" << endl);
 }
 
 
@@ -230,8 +267,8 @@ T det(Matrix<T, M, M> &A) {
     else if (M > 1){
         T s = 0;
         for(size_t i = 0; i<M; i++) {
-            const size_t X = M-1;
-            Matrix<T, X, X> Next;
+//            const size_t X = M-1;
+            Matrix<T, M-1, M-1> Next;
             for(size_t j = 1; j<M; j++) {
                 for(size_t k = 0; k<M; k++) {
                     if(k<i) {
@@ -242,8 +279,7 @@ T det(Matrix<T, M, M> &A) {
                     }
                 }
             }
-            cout << Next << endl;
-//            s = det(Next);
+            assert(cout << Next << endl);
             if(i%2) {
                 s -= A(i, 0) * det(Next);
             }
@@ -269,5 +305,6 @@ void Matrix<T, ROWS, COLS>::replaceColumn(size_t col, const Matrix<T, ROWS, 1>& 
         this->matrix[i][col] = vector(i, 0);
     }
 }
+
 
 #endif // MATRIX_HPP

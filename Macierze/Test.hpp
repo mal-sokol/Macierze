@@ -1,5 +1,7 @@
 #ifndef TEST_HPP
 #define TEST_HPP
+#define NDEBUG
+
 
 class Test
 {
@@ -9,6 +11,7 @@ public:
 	void chooseTest();
 
 private:
+    void menu();
 	void emptyMatrix();
 	void operators1();
 	void determinant();
