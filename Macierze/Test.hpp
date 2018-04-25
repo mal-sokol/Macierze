@@ -14,8 +14,10 @@ private:
     void menu();
 	void emptyMatrix();
 	void operators1();
-	void determinant();
-	void cramer();
+	int determinant1();
+    int determinant2();
+    int determinant3();
+	int cramer();
 };
 
 #endif // TEST_HPP

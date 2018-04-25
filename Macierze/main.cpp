@@ -7,12 +7,12 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-//	Test test;
-//	test.chooseTest();
+	Test test;
+	test.chooseTest();
 
-    View view;
-    view.menu();
-    view.operations();
+//    View view;
+//    view.menu();
+//    view.operations();
 
 	return 0;
 }

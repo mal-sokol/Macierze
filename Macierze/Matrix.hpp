@@ -23,7 +23,12 @@ public:
 	
     T operator()(size_t row, size_t col) const
     {
-        return matrix[row][col];
+//        if(row<0 || row>ROWS || col<0 || col>COLS) {
+//            cout << "Wykroczenie poza macierz" << endl;
+//
+//        }
+//        else
+            return matrix[row][col];
     }
 
     T& operator()(size_t row, size_t col)
@@ -64,40 +69,6 @@ Matrix<T, ROWS, COLS>::Matrix()
 		}
 	}
 }
-
-
-//template<size_t ROWS, size_t COLS>
-//Matrix<string, ROWS, COLS>::Matrix()
-//{
-//    numOfRows = ROWS;
-//    numOfColumns = COLS;
-//
-//    matrix = new string* [ROWS];
-//
-//    for (size_t r = 0; r < ROWS; r++) {
-//        matrix[r] = new string [COLS];
-//        for (size_t c = 0; c < COLS; c++) {
-//            matrix[r][c] = "0";
-//        }
-//    }
-//}
-//
-//
-//template<size_t ROWS, size_t COLS>
-//Matrix<char, ROWS, COLS>::Matrix()
-//{
-//    numOfRows = ROWS;
-//    numOfColumns = COLS;
-//
-//    matrix = new char* [ROWS];
-//
-//    for (size_t r = 0; r < ROWS; r++) {
-//        matrix[r] = new char [COLS];
-//        for (size_t c = 0; c < COLS; c++) {
-//            matrix[r][c] = '0';
-//        }
-//    }
-//}
 
 
 template<typename T, size_t ROWS, size_t COLS>
