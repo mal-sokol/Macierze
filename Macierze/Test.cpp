@@ -15,7 +15,7 @@ void Test::emptyMatrix() {
 	Matrix<double, 3, 7> dblMatrix;
 	Matrix<float, 3, 3> flMatrix;
 	Matrix<char, 2, 2> charMatrix;
-//	Matrix<string, 2, 3> stMatrix;
+	Matrix<bool, 2, 3> boolMatrix;
 	
 	intMatrix(1, 1) = 76;
 	intMatrix(2, 0) = 476;
@@ -24,8 +24,8 @@ void Test::emptyMatrix() {
 	flMatrix(2, 2) = 25.56f;
     charMatrix(0,1) = 'x';
     charMatrix(1, 1) = 'y';
-//    stMatrix(0, 1) = "test";
-//    stMatrix(1, 0) = "test";
+    boolMatrix(0, 1) = true;
+    boolMatrix(1, 0) = true;
 	
 //	charMatrix.fill();
 //	cout <<endl;
@@ -38,9 +38,9 @@ void Test::emptyMatrix() {
         << "Matrix of chars: " << endl
 		<< charMatrix << endl
         << "Matrix of floats: " << endl
-        << flMatrix << endl;
-//        << "Matrix of strings: " << endl
-//        << stMatrix;
+        << flMatrix << endl
+        << "Matrix of bool: " << endl
+        << boolMatrix;
 }
 
 
@@ -148,12 +148,15 @@ void Test::chooseTest() {
 void Test::determinant(){
 
     Matrix<int, 3, 3> A;
+//    Matrix<int, 3, 3> B;
     int result;
 
     A.fill();
 
     cout << "A =" << endl
          << A << endl;
+//    cout << "B =" << endl
+//         << B << endl;
 
     result = det(A);
     cout << "det(A) = " << result << endl;

@@ -6,9 +6,21 @@
 #define MATRIX_VIEW_HPP
 
 
+#include <cstddef>
+#include "Matrix.hpp"
+
 class View {
 
+public:
     void menu();
+    void operations();
+    void plusMinus(bool plus);
+    void multiplication();
+    void transposition();
+    void determinant();
+    void cramer();
+
+    int size(bool square);
 };
 
 

@@ -120,11 +120,12 @@ void Matrix<T, ROWS, COLS>::fill() {
 	for (size_t r = 0; r < ROWS; r++) {
 		cout << "Rzad " << r+1 << ": ";
 		for (size_t c = 0; c < COLS; c++) {
-			cin >> matrix[r][c];				//wczytywanie niezabezpieczone
-//			while(!cin.good()) {
-//				cin.ignore(1000, '\n');
-//				cin >> matrix[r][c];
-//				}
+			cin >> matrix[r][c];
+			while(!cin.good()) {
+				cin.ignore(1000, ' ');
+				cin.clear();
+				cin >> matrix[r][c];
+				}
 			}
 	}
 	cout << endl;
@@ -267,8 +268,8 @@ T det(Matrix<T, M, M> &A) {
     else if (M > 1){
         T s = 0;
         for(size_t i = 0; i<M; i++) {
-//            const size_t X = M-1;
-            Matrix<T, M-1, M-1> Next;
+           const size_t X = M-1;
+            Matrix<T, X, X> Next;
             for(size_t j = 1; j<M; j++) {
                 for(size_t k = 0; k<M; k++) {
                     if(k<i) {
