@@ -7,6 +7,9 @@
 
 void View::menu() {
 
+    system("cls");
+//    system("clear"));
+
         cout << "   ______________________________________________________" << endl
              << " /|                                                      |" << endl
              << "| |      Program wykonujacy operacje na macierzach       |" << endl
@@ -206,6 +209,8 @@ void View::multiplication() {
         }
         default :
             cout << "Powrot" << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
     }
 
 
@@ -338,6 +343,8 @@ void View::plusMinus(bool plus) {
         }
         default :
             cout << "Powrot" << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
     }
 
 }
@@ -415,6 +422,8 @@ void View::transposition() {
         }
         default :
             cout << "Powrot" << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
     }
 }
 
@@ -462,6 +471,8 @@ void View::determinant() {
             break;
         default :
             cout << "Powrot" << endl;
+            cin.clear();
+            cin.ignore(1000, '\n');
     }
 }
 

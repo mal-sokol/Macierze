@@ -23,16 +23,17 @@ public:
 	
     T operator()(size_t row, size_t col) const
     {
-//        if(row<0 || row>ROWS || col<0 || col>COLS) {
-//            cout << "Wykroczenie poza macierz" << endl;
-//
-//        }
-//        else
-            return matrix[row][col];
+        if(row<0 || row>ROWS || col<0 || col>COLS) {
+            throw out_of_range("nawias1");
+        }
+        return matrix[row][col];
     }
 
     T& operator()(size_t row, size_t col)
     {
+        if(row<0 || row>ROWS || col<0 || col>COLS) {
+            throw out_of_range("nawias2");
+        }
         return matrix[row][col];
     }
 

@@ -64,17 +64,11 @@ void Test::operators1() {
 	Matrix<int, 4, 2> M6;
 
 	
-//	M1.fill();
-//	M2.fill();
-//	M4.fill();
-//	M6.fill();
+	M1.fill();
+	M2.fill();
+	M4.fill();
+	M6.fill();
 
-    M1(0, 0) = 1;
-    M1(1, 0) = 1;
-    M1(2, 0) = 1;
-    M1(3, 0) = 1;
-    M1(4, 0) = 1;
-    M1(5, 0) = 1;
 
     Matrix<int, 4, 5>  M3 = M2 - M1;
     Matrix<int, 4, 2> M5 = M3 * M4;
@@ -109,7 +103,8 @@ void Test::menu() {
          << "| |      2 - test available operations on int Matrices   |" << endl
          << "| |      3 - count determinant of matrix                 |" << endl
          << "| |      4 - solve cramer equation                       |" << endl
-         << "| |      5 - exit program                                |" << endl
+         << "| |      5 - generate an exception                       |" << endl
+         << "| |      6 - exit program                                |" << endl
          << "| | ____________________________________________________ |" << endl
          << "|/______________________________________________________/ " << endl << endl << endl
          << "Enter your choice: ";
@@ -121,7 +116,7 @@ void Test::chooseTest() {
     menu();
     int choice;
     cin >> choice;
-    while(choice != 5) {
+    while(choice != 6) {
         switch (choice) {
             case 1 :
                 emptyMatrix();
@@ -155,6 +150,13 @@ void Test::chooseTest() {
                 cin >> choice;
                 break;
             case 5 :
+                makeException();
+                cin.clear();
+                cin.ignore(1000, '\n');
+                menu();
+                cin >> choice;
+                break;
+            case 6 :
                 break;
             default:
                 cout << "Try again" << endl;
@@ -318,7 +320,7 @@ int Test::cramer() {
             temp.replaceColumn(i, B);
             assert(cout << temp << endl);
             double x = det(temp)/detA;
-            cout << "Variable " << X(i, 0) << " = " << x << endl << endl;
+            cout << X(i, 0) << " = " << x << endl << endl;
             result[i] = x;
         }
         double y;
@@ -344,6 +346,12 @@ int Test::cramer() {
         return 1;
     }
 
+}
+
+void Test::makeException() {
+
+    Matrix<int, 4, 4> A;
+    A(10, 0) = 56;
 }
 
 
