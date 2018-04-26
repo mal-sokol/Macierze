@@ -7,7 +7,7 @@
 
 void View::menu() {
 
-    system("cls");
+//    system("cls");
 //    system("clear"));
 
         cout << "   ______________________________________________________" << endl

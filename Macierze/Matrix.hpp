@@ -1,6 +1,6 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
-#define NDEBUG
+//#define NDEBUG
 
 #include <iostream>
 #include <string>
@@ -94,8 +94,8 @@ void Matrix<T, ROWS, COLS>::fill() {
 		for (size_t c = 0; c < COLS; c++) {
 			cin >> matrix[r][c];
 			while(!cin.good()) {
+                cin.clear();
 				cin.ignore(1000, ' ');
-				cin.clear();
 				cin >> matrix[r][c];
 				}
 			}
