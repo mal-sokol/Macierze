@@ -7,7 +7,7 @@ main.o : main.cpp
 	$(CC) -g -c main.cpp -o main.o
 
 Matrix.o : Matrix.o Matrix.hpp
-	$(CC) -g -c Ship.cpp -o Ship.o
+	$(CC) -g -c Matrix.cpp -o Matrix.o
 
 Test.o : Test.o Test.hpp Matrix.hpp
 	$(CC) -g -c Test.cpp -o Test.o
