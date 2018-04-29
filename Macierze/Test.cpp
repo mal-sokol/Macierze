@@ -29,19 +29,16 @@ void Test::emptyMatrix() {
          << "Matrix of bool: " << endl
          << boolMatrix << endl << endl;
 
-	intMatrix(1, 1) = 76;
-	intMatrix(2, 0) = 476;
-	dblMatrix(2, 6) = 3.14;
-	dblMatrix(0, 2) = 2.8;
-	flMatrix(2, 2) = 25.56f;
-    charMatrix(0,1) = 'x';
-    charMatrix(1, 1) = 'y';
-    boolMatrix(0, 1) = true;
-    boolMatrix(1, 0) = true;
-	
-//	charMatrix.fill();
-//	cout <<endl;
-//	intMatrix.fill();
+    cout << "INT" << endl;
+    cin >> intMatrix;
+    cout << endl << "DOUBLE" << endl;
+    cin >> dblMatrix;
+    cout << endl << "CHAR" << endl;
+    cin >> charMatrix;
+    cout << endl << "FLOAT" << endl;
+    cin >> flMatrix;
+    cout << endl << "BOOL" << endl;
+    cin >> boolMatrix;
 	
 	cout << "Matrix of ints: " << endl
         << intMatrix << endl
@@ -64,10 +61,10 @@ void Test::operators1() {
 	Matrix<int, 4, 2> M6;
 
 	
-	M1.fill();
-	M2.fill();
-	M4.fill();
-	M6.fill();
+	cin >> M1;
+    cin >> M2;
+    cin >> M4;
+    cin >> M6;
 
 
     Matrix<int, 4, 5>  M3 = M2 - M1;
@@ -289,9 +286,6 @@ int Test::cramer() {
     Matrix<double, 4, 4> temp;
     double result[4];
 
-//    A.fill();
-//    B.fill();
-//    X.fill();
 
     A(0, 0) = 1;
     A(1, 1) = 2;

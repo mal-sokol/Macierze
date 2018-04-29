@@ -123,8 +123,7 @@ void View::multiplication() {
             Matrix<double, 2, 2> B1;
             Matrix<double, 2, 2> C1;
 
-            A1.fill();
-            B1.fill();
+            cin >> A1 >> B1;
 
             cout << "A = " << endl << A1 << endl
                  << "B = " << endl << B1 << endl << endl;
@@ -138,8 +137,7 @@ void View::multiplication() {
             Matrix<double, 3, 3> B2;
             Matrix<double, 3, 3> C2;
 
-            A2.fill();
-            B2.fill();
+            cin >> A2 >> B2;
 
             cout << "A = " << endl << A2 << endl
                  << "B = " << endl << B2 << endl << endl;
@@ -153,8 +151,7 @@ void View::multiplication() {
             Matrix<double, 4, 4> B3;
             Matrix<double, 4, 4> C3;
 
-            A3.fill();
-            B3.fill();
+            cin >> A3 >> B3;
 
             cout << "A = " << endl << A3 << endl
                  << "B = " << endl << B3 << endl << endl;
@@ -168,8 +165,7 @@ void View::multiplication() {
             Matrix<double, 5, 5> B4;
             Matrix<double, 5, 5> C4;
 
-            A4.fill();
-            B4.fill();
+            cin >> A4 >> B4;
 
             cout << "A = " << endl << A4 << endl
                  << "B = " << endl << B4 << endl << endl;
@@ -183,8 +179,7 @@ void View::multiplication() {
             Matrix<double, 4, 2> B5;
             Matrix<double, 3, 2> C5;
 
-            A5.fill();
-            B5.fill();
+            cin >> A5 >> B5;
 
             cout << "A = " << endl << A5 << endl
                  << "B = " << endl << B5 << endl << endl;
@@ -198,8 +193,7 @@ void View::multiplication() {
             Matrix<double, 6, 2> B6;
             Matrix<double, 5, 2> C6;
 
-            A6.fill();
-            B6.fill();
+            cin >> A6 >> B6;
 
             cout << "A = " << endl << A6 << endl
                  << "B = " << endl << B6 << endl << endl;
@@ -227,8 +221,7 @@ void View::plusMinus(bool plus) {
             Matrix<double, 2, 2> B1;
             Matrix<double, 2, 2> C1;
 
-            A1.fill();
-            B1.fill();
+            cin >> A1 >> B1;
 
             cout << "A = " << endl << A1 << endl
                  << "B = " << endl << B1 << endl << endl;
@@ -247,8 +240,7 @@ void View::plusMinus(bool plus) {
             Matrix<double, 3, 3> B2;
             Matrix<double, 3, 3> C2;
 
-            A2.fill();
-            B2.fill();
+            cin >> A2 >> B2;
 
             cout << "A = " << endl << A2 << endl
                  << "B = " << endl << B2 << endl << endl;
@@ -267,8 +259,7 @@ void View::plusMinus(bool plus) {
             Matrix<double, 4, 4> B3;
             Matrix<double, 4, 4> C3;
 
-            A3.fill();
-            B3.fill();
+            cin >> A3 >> B3;
 
             cout << "A = " << endl << A3 << endl
                  << "B = " << endl << B3 << endl << endl;
@@ -287,8 +278,7 @@ void View::plusMinus(bool plus) {
             Matrix<double, 5, 5> B4;
             Matrix<double, 5, 5> C4;
 
-            A4.fill();
-            B4.fill();
+            cin >> A4 >> B4;
 
             cout << "A = " << endl << A4 << endl
                  << "B = " << endl << B4 << endl << endl;
@@ -307,8 +297,7 @@ void View::plusMinus(bool plus) {
             Matrix<double, 3, 4> B5;
             Matrix<double, 3, 4> C5;
 
-            A5.fill();
-            B5.fill();
+            cin >> A5 >> B5;
 
             cout << "A = " << endl << A5 << endl
                  << "B = " << endl << B5 << endl << endl;
@@ -327,8 +316,7 @@ void View::plusMinus(bool plus) {
             Matrix<double, 5, 6> B6;
             Matrix<double, 5, 6> C6;
 
-            A6.fill();
-            B6.fill();
+            cin >> A6 >> B6;
 
             cout << "A = " << endl << A6 << endl
                  << "B = " << endl << B6 << endl << endl;
@@ -359,7 +347,7 @@ void View::transposition() {
             Matrix<double, 2, 2> A1;
             Matrix<double, 2, 2> B1;
 
-            A1.fill();
+            cin >> A1;
             B1 = A1.transposed();
 
             cout << "A = " << endl << A1 << endl
@@ -370,7 +358,7 @@ void View::transposition() {
             Matrix<double, 3, 3> A2;
             Matrix<double, 3, 3> B2;
 
-            A2.fill();
+            cin >> A2;
             B2 = A2.transposed();
 
             cout << "A = " << endl << A2 << endl
@@ -381,7 +369,7 @@ void View::transposition() {
             Matrix<double, 4, 4> A3;
             Matrix<double, 4, 4> B3;
 
-            A3.fill();
+            cin >> A3;
             B3 = A3.transposed();
 
             cout << "A = " << endl << A3 << endl
@@ -392,7 +380,7 @@ void View::transposition() {
             Matrix<double, 5, 5> A4;
             Matrix<double, 5, 5> B4;
 
-            A4.fill();
+            cin >> A4;
             B4 = A4.transposed();
 
             cout << "A = " << endl << A4 << endl
@@ -403,7 +391,7 @@ void View::transposition() {
             Matrix<double, 3, 4> A5;
             Matrix<double, 4, 3> B5;
 
-            A5.fill();
+            cin >> A5;
             B5 = A5.transposed();
 
             cout << "A = " << endl << A5 << endl
@@ -414,7 +402,7 @@ void View::transposition() {
             Matrix<double, 5, 6> A6;
             Matrix<double, 6, 5> B6;
 
-            A6.fill();
+            cin >> A6;
             B6 = A6.transposed();
 
             cout << "A = " << endl << A6 << endl
@@ -436,7 +424,7 @@ void View::determinant() {
         case 1 : {
             Matrix<double, 2, 2> A1;
 
-            A1.fill();
+            cin >> A1;
 
             cout << "A = " << endl << A1 << endl
                  << "det(A) = " << det(A1) << endl << endl;
@@ -445,7 +433,7 @@ void View::determinant() {
         case 2 : {
             Matrix<double, 3, 3> A2;
 
-            A2.fill();
+            cin >> A2;
 
             cout << "A = " << endl << A2 << endl
                  << "det(A) = " << det(A2) << endl << endl;
@@ -454,7 +442,7 @@ void View::determinant() {
         case 3 : {
             Matrix<double, 4, 4> A3;
 
-            A3.fill();
+            cin >> A3;
 
             cout << "A = " << endl << A3 << endl
                  << "det(A) = " << det(A3) << endl << endl;
@@ -463,7 +451,7 @@ void View::determinant() {
         case 4 : {
             Matrix<double, 5, 5> A4;
 
-            A4.fill();
+            cin >> A4;
 
             cout << "A = " << endl << A4 << endl
                  << "det(A) = " << det(A4) << endl << endl;
@@ -486,8 +474,7 @@ void View::cramer() {
     Matrix<double, 4, 4> temp;
     double result[4];
 
-    A.fill();
-    B.fill();
+    cin >> A >> B;
 
     X(0, 0) = 'x';
     X(1, 0) = 'y';

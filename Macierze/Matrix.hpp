@@ -1,6 +1,6 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
-//#define NDEBUG
+#define NDEBUG
 
 #include <iostream>
 #include <string>
@@ -15,11 +15,10 @@ template<typename T, size_t ROWS, size_t COLS> class Matrix
 public:
 	Matrix();
 	~Matrix();
-	
-//	void fillRow(size_t r);
-	void fill();
+
 	
 	template <typename U, size_t M, size_t N> friend ostream& operator << (ostream& os, const Matrix<U, M, N>& m);
+    template <typename U, size_t M, size_t N> friend istream& operator >> (istream& is, const Matrix<U, M, N>& m);
 	
     T operator()(size_t row, size_t col) const
     {
@@ -82,29 +81,6 @@ Matrix<T, ROWS, COLS>::~Matrix()
 	delete[] matrix;
 	assert(cout << "MATRIX " << ROWS << "x" << COLS << " DESTROYED" << endl);
 }
-
-
-
-template<typename T, size_t ROWS, size_t COLS>
-void Matrix<T, ROWS, COLS>::fill() {
-
-    cout << "Wypelnij macierz o wymiarach " << ROWS << "x" << COLS << endl;
-	for (size_t r = 0; r < ROWS; r++) {
-		cout << "Rzad " << r+1 << ": ";
-		for (size_t c = 0; c < COLS; c++) {
-			cin >> matrix[r][c];
-			while(!cin.good()) {
-                cin.clear();
-				cin.ignore(1000, ' ');
-				cin >> matrix[r][c];
-				}
-			}
-	}
-	cout << endl;
-	cin.ignore(1000, '\n');
-}
-
-
 
 
 //---------------------------------------< OPERATORS >------------------------------------------//
@@ -212,6 +188,28 @@ ostream& operator << (ostream& os, const Matrix<U, N, M>& m) {
 	}
 	
 	return os;
+}
+
+template <typename U, size_t N, size_t M>
+istream& operator >> (istream& is, const Matrix<U, N, M>& m) {
+
+    U input;
+    cout << "Wypelnij macierz o wymiarach " << N << "x" << M << endl;
+    for(size_t i = 0; i<m.numOfRows; i++) {
+        cout << "Rzad " << i+1 << ": ";
+
+        for(size_t j = 0; j<m.numOfColumns; j++) {
+            is >> input;
+            while(!is.good()) {
+                is.clear();
+                is.ignore(1000, ' ');
+                is >> input;
+            }
+            m.matrix[i][j] = input;
+        }
+    }
+
+    return is;
 }
 //----------------------------------------------------------------------------------------------//
 
