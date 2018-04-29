@@ -1,13 +1,10 @@
 CC = g++
 
-main.out : main.o Matrix.o Test.o View.o
-	$(CC) main.o Matrix.o Test.o View.o -o main.out
+main.out : main.o Test.o View.o
+	$(CC) main.o Test.o View.o -o main.out
 
 main.o : main.cpp
 	$(CC) -g -c main.cpp -o main.o
-
-Matrix.o : Matrix.o Matrix.hpp
-	$(CC) -g -c Matrix.cpp -o Matrix.o
 
 Test.o : Test.o Test.hpp Matrix.hpp
 	$(CC) -g -c Test.cpp -o Test.o
